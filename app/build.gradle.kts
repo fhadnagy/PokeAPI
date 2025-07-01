@@ -70,7 +70,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.okhttp.core)
     implementation(libs.okhttp.logging.interceptor) // Optional for logging
-
+    implementation(libs.coil.compose) // Or the latest version
 }
 
 // Allow references to generated code

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.11.0"
+coilCompose = "2.7.0"
 gson = "2.13.1"
 kotlin = "2.2.0"
 coreKtx = "1.16.0"
@@ -21,6 +22,7 @@ hiltNavigationCompose = "1.2.0" # Check latest
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

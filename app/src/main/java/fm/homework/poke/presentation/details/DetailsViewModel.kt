@@ -26,5 +26,26 @@ class DetailsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getPokemonUseCase: GetPokemonUseCase,
 ): ViewModel(){
+    private val _uiState = MutableStateFlow(DetailsState())
+    val uiState: StateFlow<DetailsState> = _uiState.asStateFlow()
 
+    init {
+        savedStateHandle.get<String>(AppDestinations.DETAILS_NAME_ARG)?.let { pokemonName ->
+            getPokemon(pokemonName)
+        }
+    }
+
+    private fun getPokemon(name: String) {
+        viewModelScope.launch {
+            getPokemonUseCase(name).collect { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        _uiState.update { it.copy(pokemonDetails = result.data, isLoading = false) }
+                    }
+                    is Resource.Error -> _uiState.update { it.copy(error = result.message ?: "An unexpected error occurred", isLoading = false) }
+                    is Resource.Loading -> _uiState.update { it.copy(isLoading = true) }
+                }
+            }
+        }
+    }
 }

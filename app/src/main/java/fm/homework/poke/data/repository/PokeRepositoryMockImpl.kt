@@ -26,6 +26,6 @@ class PokeRepositoryMockImpl : PokeRepository {
 
     override suspend fun getPokemon(name: String): Pokemon {
         ///TODO: implement for 3 distinct
-        return  Pokemon("Charizard", listOf("Burn","Flame","Hellfire"), listOf("Water","Magma"), "",99,16,false)
+        return  Pokemon("Charizard", listOf("Burn","Flame","Hellfire"), listOf("Water","Magma"), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/215.png",99,16,false)
     }
 }
