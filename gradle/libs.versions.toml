@@ -15,6 +15,8 @@ ktorClientContentNegotiation = "3.2.0"
 hilt = "2.56.2" # Use the latest stable version
 retrofit = "3.0.0"  # Check for the latest stable version
 okhttp = "4.12.0" # Check for the latest stable version (Retrofit uses OkHttp)
+navigationCompose = "2.9.0" # Check for the latest stable version
+hiltNavigationCompose = "1.2.0" # Check latest
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +45,8 @@ retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.r
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

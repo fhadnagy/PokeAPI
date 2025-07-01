@@ -3,45 +3,50 @@ package fm.homework.poke
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import fm.homework.poke.ui.theme.PokeAPITheme
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import dagger.hilt.android.AndroidEntryPoint
+import fm.homework.poke.presentation.AppDestinations
+import fm.homework.poke.presentation.details.DetailsScreen
+import fm.homework.poke.presentation.selector.SelectorScreen
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            PokeAPITheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            // YourAppTheme { // Apply your theme
+            AppNavigation()
+            // }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun AppNavigation() {
+    val navController: NavHostController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PokeAPITheme {
-        Greeting("Android")
+    NavHost(
+        navController = navController,
+        startDestination = AppDestinations.SELECTOR_ROUTE // Your starting screen
+    ) {
+        composable(route = AppDestinations.SELECTOR_ROUTE) {
+            SelectorScreen()
+        }
+
+        composable(
+            route = AppDestinations.detailsRouteWithArg,
+            arguments = listOf(navArgument(AppDestinations.DETAILS_NAME_ARG) {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val pokemonName = backStackEntry.arguments?.getString(AppDestinations.DETAILS_NAME_ARG)
+            DetailsScreen()
+        }
     }
 }

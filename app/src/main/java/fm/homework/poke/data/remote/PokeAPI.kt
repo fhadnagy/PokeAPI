@@ -14,7 +14,8 @@ interface PokeAPI {
     suspend fun getAllTypes(): TypeListDTO
 
     //Get all Pokemons
-    @GET("type")
+    //TODO: btw 1302 db van
+    @GET("pokemon/?limit=50&offset=0")
     suspend fun getAllPokemons(): PokemonListDTO
 
     // Get Pokémon list by type

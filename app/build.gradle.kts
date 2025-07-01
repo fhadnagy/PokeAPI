@@ -63,10 +63,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose) // If using version catalog
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.gson) // Use the Gson converter
     implementation(libs.gson)                     // Gson library itself
-
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.okhttp.core)
     implementation(libs.okhttp.logging.interceptor) // Optional for logging
 
