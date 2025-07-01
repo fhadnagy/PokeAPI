@@ -7,6 +7,7 @@ import fm.homework.poke.common.Resource
 import fm.homework.poke.domain.use_case.GetAllPokemonRowsUseCase
 import fm.homework.poke.domain.use_case.GetAllPokemonsByTypeUseCase
 import fm.homework.poke.domain.use_case.GetAllTypesUseCase
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -24,11 +25,16 @@ class SelectorViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(SelectorState())
     val uiState: StateFlow<SelectorState> = _uiState.asStateFlow()
 
+    private val searchJob: Job? = null
+    private var resultList = listOf<RowPokemonData>()
+
     private fun getAllPokemonRows(){
         getAllPokemonRowsUseCase().onEach { result ->
             when(result){
                 is Resource.Success -> {
                     _uiState.update { it.copy(filteredItems = result.data ?: emptyList(), isLoadingList = false) }
+                    resultList = result.data ?: emptyList()
+                    _uiState.update { it.copy(filteredItems = resultList.filter { item -> item.name.contains(_uiState.value.searchQuery) }) }
                 }
                 is Resource.Error -> {
                     _uiState.update { it.copy(error = result.message ?: "An unexpected error occured", isLoadingList = false) }
@@ -45,6 +51,8 @@ class SelectorViewModel @Inject constructor(
             when(result){
                 is Resource.Success -> {
                     _uiState.update { it.copy(filteredItems = result.data ?: emptyList(), isLoadingList = false) }
+                    resultList = result.data ?: emptyList()
+                    _uiState.update { it.copy(filteredItems = resultList.filter { item -> item.name.contains(_uiState.value.searchQuery) }) }
                 }
                 is Resource.Error -> {
                     _uiState.update { it.copy(error = result.message ?: "An unexpected error occured", isLoadingList = false) }
@@ -88,10 +96,16 @@ class SelectorViewModel @Inject constructor(
         else
         {
             getAllPokemonByType(selectionOption)
+
         }
     }
 
     fun  onCatchToggle(name: String){
         _uiState.update { it.copy(filteredItems = it.filteredItems.map { item -> if (item.name == name) item.copy(caught = !item.caught) else item }) }
+    }
+
+    fun onQueryChanged(str : String){
+        _uiState.update { it.copy(searchQuery = str) }
+        _uiState.update { it.copy(filteredItems = resultList.filter { item -> item.name.contains(str) }) }
     }
 }
