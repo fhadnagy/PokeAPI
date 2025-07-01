@@ -28,7 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import fm.homework.poke.R
-import fm.homework.poke.domain.model.Pokemon
+import fm.homework.poke.domain.model.PokemonDetails
 
 @Composable
 fun DetailsScreen(
@@ -60,7 +60,7 @@ fun DetailsScreen(
 }
 
 @Composable
-fun PokemonDetailsView(pokemonDetails: Pokemon) {
+fun PokemonDetailsView(pokemonDetails: PokemonDetails) {
     Column(
         modifier = Modifier
             .fillMaxSize()

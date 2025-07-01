@@ -1,6 +1,6 @@
 package fm.homework.poke.domain.model
 
-data class Pokemon(
+data class PokemonDetails(
     val name: String,
     val abilities: List<String>,
     val types: List<String>,

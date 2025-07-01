@@ -1,9 +1,7 @@
 package fm.homework.poke.domain.use_case
 
 import fm.homework.poke.common.Resource
-import fm.homework.poke.domain.model.Type
 import fm.homework.poke.domain.repository.PokeRepository
-import fm.homework.poke.presentation.selector.RowPokemonData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
