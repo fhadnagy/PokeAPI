@@ -48,4 +48,8 @@ class DetailsViewModel @Inject constructor(
             }
         }
     }
+
+    fun onCaugthToggle(){
+        _uiState.update { it.copy(pokemonDetails = it.pokemonDetails?.copy(caught = !it.pokemonDetails.caught)) }
+    }
 }
