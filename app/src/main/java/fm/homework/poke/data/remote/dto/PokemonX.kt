@@ -2,6 +2,7 @@ package fm.homework.poke.data.remote.dto
 
 
 import com.google.gson.annotations.SerializedName
+import fm.homework.poke.domain.model.PokeItemData
 import fm.homework.poke.domain.model.PokemonDetails
 
 data class PokemonX(
@@ -11,6 +12,6 @@ data class PokemonX(
     val url: String
 )
 
-fun PokemonX.toPokemonDetails(type: String, caught: Boolean): PokemonDetails {
-    return PokemonDetails(name, listOf(), listOf(type), "", 0, 0, caught)
+fun PokemonX.toPokeItemData(type: String,  caught: Boolean): PokeItemData {
+    return PokeItemData(name,  listOf(type),  caught)
 }
