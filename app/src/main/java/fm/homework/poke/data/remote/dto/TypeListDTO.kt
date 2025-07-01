@@ -7,9 +7,9 @@ data class TypeListDTO(
     @SerializedName("count")
     val count: Int,
     @SerializedName("next")
-    val next: String,
+    val nextPage: String?,
     @SerializedName("previous")
-    val previous: Any?,
+    val previousPage: String?,
     @SerializedName("results")
     val results: List<Result>
 )
