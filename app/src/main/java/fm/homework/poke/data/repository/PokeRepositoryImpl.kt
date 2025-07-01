@@ -9,6 +9,7 @@ import javax.inject.Inject
 class PokeRepositoryImpl @Inject constructor(
     private val api: PokeAPI
 ) : PokeRepository {
+    //TODO: merging of caught or uncaught and saving to local db and returning happens here
     override suspend fun getAllTypes(): List<Type> {
         TODO("Not yet implemented")
     }

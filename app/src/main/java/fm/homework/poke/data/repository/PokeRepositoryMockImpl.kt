@@ -18,12 +18,14 @@ class PokeRepositoryMockImpl : PokeRepository {
     }
 
     override suspend fun getPokemonsByType(type: String): List<Pokemon> {
+        ///TODO: implement for water, fire, earth, wind and other
         return listOf(Pokemon("Charizard", listOf("Burn","Flame","Hellfire"), listOf("Water","Magma"), "",15,16,false),
             Pokemon("Charizard", listOf("Burn","Flame","Hellfire"), listOf("Water","Magma"), "",15,16,true),
             Pokemon("Charizard", listOf("Burn","Flame","Hellfire"), listOf("Water","Magma"), "",15,16,false))
     }
 
     override suspend fun getPokemon(name: String): Pokemon {
-        TODO("Not yet implemented")
+        ///TODO: implement for 3 distinct
+        return  Pokemon("Charizard", listOf("Burn","Flame","Hellfire"), listOf("Water","Magma"), "",99,16,false)
     }
 }
