@@ -36,7 +36,9 @@ fun AppNavigation() {
         startDestination = AppDestinations.SELECTOR_ROUTE // Your starting screen
     ) {
         composable(route = AppDestinations.SELECTOR_ROUTE) {
-            SelectorScreen()
+            SelectorScreen(navigateToDetails = { pokemonName ->
+                navController.navigate("${AppDestinations.DETAILS_ROUTE}/$pokemonName")
+            })
         }
 
         composable(
